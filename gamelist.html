@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game List Generator</title>
+</head>
+<body>
+    <h1>Game List Generator</h1>
+    <form id="gameForm">
+        <label for="emulator">Emulator:</label><br>
+        <input type="text" id="emulator" name="emulator"><br><br>
+
+        <label for="gameList">Game List (each game on a new line):</label><br>
+        <textarea id="gameList" name="gameList" rows="10" cols="50"></textarea><br><br>
+
+        <button type="button" onclick="generateGameList()">Generate gamelist.txt</button>
+    </form>
+
+    <script>
+        function generateGameList() {
+            const emulator = document.getElementById('emulator').value;
+            const gameList = document.getElementById('gameList').value.split('\n');
+
+            let content = '#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons;Series;Language;Region;Rating\n';
+
+            gameList.forEach(game => {
+                const details = game.split(';');
+                const name = details[0] || '';
+                const title = details[1] || name;
+                const year = details[2] || '';
+                const manufacturer = details[3] || '';
+                const category = details[4] || '';
+                const players = details[5] || '';
+                const cloneOf = details[6] || '';
+                const rotation = details[7] || '';
+                const control = details[8] || '';
+                const status = details[9] || '';
+                const displayCount = details[10] || '';
+                const displayType = details[11] || '';
+                const altRomname = details[12] || '';
+                const altTitle = details[13] || '';
+                const extra = details[14] || '';
+                const buttons = details[15] || '';
+                const series = details[16] || '';
+                const language = details[17] || '';
+                const region = details[18] || '';
+                const rating = details[19] || '';
+
+                content += `${name};${title};${emulator};${cloneOf};${year};${manufacturer};${category};${players};${rotation};${control};${status};${displayCount};${displayType};${altRomname};${altTitle};${extra};${buttons};${series};${language};${region};${rating}\n`;
+            });
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'gamelist.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>

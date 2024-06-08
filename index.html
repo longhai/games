@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game online</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div id="menu-overlay"></div>
+  <div id="menu">
+    <h2>Menu</h2>
+    <ul id="menu-items">
+      <li>
+        <input type="text" id="search-input" placeholder="Search...">
+      </li>
+      <li>
+        <select id="source-select">
+          <option value="mame2003_plus">Arcade</option>
+          <option value="nes">Famicom</option>
+          <option value="snes">Super Famicom</option>
+          <option value="segaMD">Mega Drive – Genesis</option>
+          <option value="gba">Game Boy Advance</option>
+          <option value="ws">WonderSwan Color</option>
+          <option value="pce">PC Engine – TurboGrafx-16</option>
+          <option value="psx">Sony PlayStation</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+
+  <div id="menu-toggle">&#9776;</div>
+
+  <div id="letter-buttons"></div>
+  <div id="game-list"></div>
+  <div id="pagination-container">
+    <button id="prev-btn">Prev</button>
+    <div id="page-count"></div>
+    <div id="game-list-count"></div>
+    <button id="next-btn">Next</button>
+  </div>
+  <script src="js/script.js"></script>
+  <script>
+    const menu = document.getElementById('menu');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuOverlay = document.getElementById('menu-overlay');
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('show');
+      menuOverlay.classList.toggle('show');
+      menuToggle.classList.toggle('hide');
+    });
+    menuOverlay.addEventListener('click', function() {
+      menu.classList.remove('show');
+      menuOverlay.classList.remove('show');
+      menuToggle.classList.remove('hide');
+    });
+  </script>
+</body>
+
+</html>
